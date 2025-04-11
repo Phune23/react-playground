@@ -22,7 +22,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     
-    # Tạo package-lock.json nếu cần
     - name: Create package-lock.json if needed
       run: |
         if [ ! -f package-lock.json ]; then
@@ -64,22 +63,24 @@ jobs:
         path: dist/
         retention-days: 1
 
-  deploy:
-    needs: build
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Download built files
-      uses: actions/download-artifact@v4
-      with:
-        name: build-files
-        path: dist/
-    
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4.5.0
-      with:
-        branch: gh-pages
-        folder: dist
+  # Job deploy được comment out để tắt GitHub Pages deployment
+  # Đã triển khai trên Railway thay thế
+  # deploy:
+  #   needs: build
+  #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+  #   runs-on: ubuntu-latest
+  #   
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #   
+  #   - name: Download built files
+  #     uses: actions/download-artifact@v4
+  #     with:
+  #       name: build-files
+  #       path: dist/
+  #   
+  #   - name: Deploy to GitHub Pages
+  #     uses: JamesIves/github-pages-deploy-action@v4.5.0
+  #     with:
+  #       branch: gh-pages
+  #       folder: dist
