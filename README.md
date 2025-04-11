@@ -1,8 +1,9 @@
 # React Playground
 
 ![CI/CD](https://github.com/Phune23/react-playground/workflows/React%20Playground%20CI/CD/badge.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)
 
 Ứng dụng playground cho React, giúp học và thực hành React một cách trực quan.
 
@@ -20,9 +21,17 @@
 
 [Live Demo](https://your-username.github.io/react-playground/)
 
+## Yêu cầu hệ thống
+
+- Node.js 18.0.0 trở lên
+- npm 8.0.0 trở lên
+
 ## Cài đặt và sử dụng
 
 ```bash
+# Kiểm tra phiên bản Node.js
+node -v  # Phải là v18.0.0 trở lên
+
 # Clone repository
 git clone https://github.com/your-username/react-playground.git
 
