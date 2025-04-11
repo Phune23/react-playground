@@ -1,0 +1,6 @@
+{
+  "id": "useEffect",
+  "title": "useEffect",
+  "description": "useEffect cho phép thực hiện các side effects trong function components, như gọi API, thao tác DOM, hay thiết lập subscription.",
+  "code": "function App() {\n  const [count, setCount] = React.useState(0);\n  const [title, setTitle] = React.useState('React useEffect Demo');\n\n  // Effect chạy sau mỗi lần render\n  React.useEffect(() => {\n    document.title = `Đã click ${count} lần`;\n  }, [count]); // Chỉ chạy lại khi count thay đổi\n\n  // Effect với cleanup function\n  React.useEffect(() => {\n    const timer = setTimeout(() => {\n      setTitle(`Đã cập nhật sau ${count} giây`);\n    }, 1000);\n\n    // Cleanup function\n    return () => clearTimeout(timer);\n  }, [count]);\n\n  return (\n    <div>\n      <h2>{title}</h2>\n      <p>Bạn đã click {count} lần</p>\n      <button onClick={() => setCount(count + 1)}>Click me</button>\n    </div>\n  );\n}"
+}

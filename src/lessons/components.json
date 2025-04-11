@@ -1,0 +1,6 @@
+{
+    "id": "component",
+    "title": "Component",
+    "description": "Một ví dụ đơn giản về component cơ bản trong React.",
+    "code": "<div style={{ textAlign: 'center', marginTop: '50px' }}>\n  <h2>Simple Button Component</h2>\n  {(() => {\n    // Định nghĩa Button component bằng arrow function, nhận props text và color\n    const Button = ({ text, color }) => <button\n      onClick={() => alert('Button clicked!')}\n      style={{\n        backgroundColor: color || '#4CAF50', // Màu nền mặc định là xanh nếu không có color\n        color: 'white',\n        padding: '10px 15px',\n        border: 'none',\n        borderRadius: '4px',\n        cursor: 'pointer',\n        fontSize: '16px',\n        margin: '5px'\n      }}\n    >{text || 'Click Me'}</button>;\n    // Trả về JSX với 3 Button component đã định nghĩa\n    return (\n      <>\n        <Button text=\"Click Me\" /> {/* Nút đầu tiên, dùng màu mặc định */}\n        <Button text=\"Blue Button\" color=\"#2196F3\" /> {/* Nút thứ hai, màu xanh dương */}\n        <Button text=\"Red Button\" color=\"#f44336\" /> {/* Nút thứ ba, màu đỏ */}\n      </>\n    );\n  })()}\n</div>"
+}

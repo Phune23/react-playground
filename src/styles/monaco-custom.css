@@ -1,0 +1,68 @@
+/* Tùy chỉnh thêm cho monaco-editor */
+
+/* Tăng độ tương phản của code */
+.monaco-editor .mtk1 { color: #000000; } /* identifier */
+.monaco-editor .mtk3 { color: #0000ff; } /* keyword */
+.monaco-editor .mtk4 { color: #097479; } /* type */
+.monaco-editor .mtk5 { color: #a31515; } /* string */
+.monaco-editor .mtk6 { color: #098658; } /* number */
+.monaco-editor .mtk7 { color: #800000; } /* tag name */
+.monaco-editor .mtk8 { color: #ff0000; } /* attribute name */
+.monaco-editor .mtk9 { color: #0000ff; } /* attribute value */
+.monaco-editor .mtk11 { color: #008000; font-style: italic; } /* comment */
+
+/* Màu cho môi trường tối */
+.monaco-editor.vs-dark .mtk1 { color: #dcdcdc; } /* identifier */
+.monaco-editor.vs-dark .mtk3 { color: #569cd6; } /* keyword */
+.monaco-editor.vs-dark .mtk4 { color: #4ec9b0; } /* type */
+.monaco-editor.vs-dark .mtk5 { color: #ce9178; } /* string */
+.monaco-editor.vs-dark .mtk6 { color: #b5cea8; } /* number */
+.monaco-editor.vs-dark .mtk7 { color: #569cd6; } /* tag name */
+.monaco-editor.vs-dark .mtk8 { color: #9cdcfe; } /* attribute name */
+.monaco-editor.vs-dark .mtk9 { color: #ce9178; } /* attribute value */
+.monaco-editor.vs-dark .mtk11 { color: #6a9955; font-style: italic; } /* comment */
+
+/* Tùy chỉnh màu nền và khung */
+.monaco-editor, .monaco-editor-background {
+  border-radius: 4px;
+}
+
+/* Tùy chỉnh code bracket pairs */
+.monaco-editor .bracket-highlighting-0 {
+  color: #0431fa;
+}
+.monaco-editor .bracket-highlighting-1 {
+  color: #319331;
+}
+.monaco-editor .bracket-highlighting-2 {
+  color: #7b3814;
+}
+.monaco-editor .bracket-highlighting-3 {
+  color: #0431fa;
+}
+.monaco-editor .bracket-highlighting-4 {
+  color: #319331;
+}
+.monaco-editor .bracket-highlighting-5 {
+  color: #7b3814;
+}
+
+/* Màu cho môi trường tối */
+.monaco-editor.vs-dark .bracket-highlighting-0 {
+  color: #72baff;
+}
+.monaco-editor.vs-dark .bracket-highlighting-1 {
+  color: #14ce14;
+}
+.monaco-editor.vs-dark .bracket-highlighting-2 {
+  color: #ff9e64;
+}
+.monaco-editor.vs-dark .bracket-highlighting-3 {
+  color: #72baff;
+}
+.monaco-editor.vs-dark .bracket-highlighting-4 {
+  color: #14ce14;
+}
+.monaco-editor.vs-dark .bracket-highlighting-5 {
+  color: #ff9e64;
+}

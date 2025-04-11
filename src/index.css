@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme */
+  --primary-color: #0066cc;
+  --primary-hover: #0055aa;
+  --secondary-color: #6c757d;
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --border-color: #dddddd;
+  --panel-bg: #f8f9fa;
+  --button-bg: #f0f0f0;
+  --button-color: #333333;
+  --button-hover: #e0e0e0;
+  --button-border: #cccccc;
+  --error-color: #ff6b6b;
+  --error-bg: #ffeeee;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="dark"] {
+  /* Dark theme */
+  --primary-color: #4da6ff;
+  --primary-hover: #3d96ef;
+  --secondary-color: #adb5bd;
+  --bg-color: #1e1e1e;
+  --text-color: #f0f0f0;
+  --border-color: #444444;
+  --panel-bg: #2d2d2d;
+  --button-bg: #3a3a3a;
+  --button-color: #e0e0e0;
+  --button-hover: #555555;
+  --button-border: #666666;
+  --error-color: #ff8080;
+  --error-bg: #551111;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+}
+
+button {
+  border-radius: 4px;
+  border: 1px solid var(--button-border);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--button-bg);
+  color: var(--button-color);
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+button:hover {
+  background-color: var(--button-hover);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--button-border);
+}
+
+/* Đảm bảo các component sử dụng biến CSS */
+#root {
+  width: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Đảm bảo chế độ fullscreen có style phù hợp */
+:fullscreen {
+  background-color: var(--bg-color);
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Hiệu ứng nhấp nháy khi reset */
+@keyframes reset-flash {
+  0% { background-color: var(--bg-color); }
+  50% { background-color: var(--secondary-bg); }
+  100% { background-color: var(--bg-color); }
+}
+
+.reset-flash {
+  animation: reset-flash 0.5s;
+}
+
+/* Thêm hiệu ứng flash khi reset */
+@keyframes resetFlash {
+  0% { background-color: rgba(255, 255, 0, 0.2); }
+  100% { background-color: transparent; }
+}
+
+.reset-flash {
+  animation: resetFlash 0.5s;
+}
+
+.monaco-editor .reset-flash {
+  animation: flash 0.5s;
+}
+
+@keyframes flash {
+  0% { 
+    background-color: rgba(255, 255, 0, 0.1); 
+  }
+  50% { 
+    background-color: rgba(255, 255, 0, 0.3); 
+  }
+  100% { 
+    background-color: transparent; 
+  }
+}
+
+/* Đảm bảo các style đặc biệt cho live preview */
+[data-preview] button {
+  background-color: var(--button-bg) !important;
+  color: var(--button-color) !important;
+  border-color: var(--button-border) !important;
+}
+
+[data-preview] {
+  --bg-color: var(--bg-color);
+  --text-color: var(--text-color);
+}
+
+/* Đảm bảo phần description có màu phù hợp với theme */
+.lesson-description {
+  background-color: var(--panel-bg);
+  color: var(--text-color);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Quy tắc cho màn hình cực nhỏ */
+@media (max-width: 480px) {
+  /* Tăng kích thước font cơ bản */
+  body {
+    font-size: 16px;
+  }
+  
+  /* Tăng kích thước nút và tính tương tác */
+  button {
+    min-height: 40px;
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+  
+  /* Tăng kích thước input fields */
+  input, textarea, select {
+    font-size: 16px; /* Ngăn iOS tự động zoom */
+    min-height: 40px;
+    padding: 8px;
+  }
+  
+  /* Đảm bảo có đủ padding dưới cùng trang */
+  #root {
+    padding-bottom: 30px;
+  }
+}
+
+/* Đảm bảo các actions touch có kích thước tối thiểu theo hướng dẫn Apple */
+@media (pointer: coarse) {
+  button, 
+  [role="button"],
+  .clickable,
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Thêm vào cuối file */
+
+/* Đảm bảo không có horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Đảm bảo Monaco Editor responsive */
+.monaco-editor, 
+.monaco-editor .overflow-guard, 
+.monaco-editor .editor-scrollable {
+  width: 100% !important;
+}
+
+/* Fix cho màn hình cực nhỏ */
+@media (max-width: 480px) {
+  .monaco-editor .monaco-scrollable-element {
+    width: 100% !important;
+  }
+  
+  .monaco-editor .editor-scrollable {
+    width: 100% !important;
+  }
+  
+  /* Đảm bảo các nút có khoảng cách đủ */
+  button {
+    margin: 2px;
+  }
+}
+
+/* Đảm bảo các button có kích thước tối thiểu trên màn hình touch */
+@media (pointer: coarse) {
+  button, 
+  .button,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
