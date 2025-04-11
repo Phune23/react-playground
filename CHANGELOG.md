@@ -2,6 +2,12 @@
 
 Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi lại ở đây.
 
+## [1.0.2] - 2025-04-11
+
+### Sửa lỗi
+- Cập nhật URL demo để sử dụng Railway deployment
+- Sửa cấu hình GitHub Actions để triển khai chính xác
+
 ## [1.0.1] - 2025-04-11
 
 ### Sửa lỗi
