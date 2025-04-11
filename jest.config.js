@@ -10,6 +10,10 @@ export default {
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest'
   },
+  extensionsToTreatAsEsm: ['.jsx', '.js'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(@testing-library|react|react-dom))/'
+  ],
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
     '!src/index.js',
