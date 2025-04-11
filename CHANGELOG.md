@@ -2,6 +2,12 @@
 
 Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi lại ở đây.
 
+## [1.0.1] - 2025-04-11
+
+### Sửa lỗi
+- Cập nhật GitHub Actions workflow để sử dụng phiên bản mới nhất
+- Sửa lỗi deprecated trong CI/CD pipeline
+
 ## [1.0.0] - 2025-04-11
 
 ### Thêm mới
