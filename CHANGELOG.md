@@ -1,6 +1,12 @@
 # Changelog
 
 Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi lại ở đây.
+## [1.0.4] - 2025-04-12
+
+### Sửa lỗi
+- Sửa lỗi Docker build cho Railway deployment
+- Thêm custom Dockerfile để tối ưu hóa quá trình build
+- Thêm nginx configuration cho Single Page Application
 
 ## [1.0.3] - 2025-04-12
 
