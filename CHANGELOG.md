@@ -6,8 +6,9 @@ Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi l
 
 ### Sửa lỗi
 - Sửa lỗi Rollup trong quá trình build trên CI/CD
-- Thêm script build:ci để xử lý các vấn đề với optional dependencies
-- Chỉ định phiên bản cụ thể của Rollup để tránh lỗi
+- Thêm script `build:ci` để xử lý các vấn đề với optional dependencies
+- Chỉ định phiên bản cụ thể của Rollup để tránh lỗi không tương thích
+- Cập nhật workflow CI để sử dụng script build mới
 
 ## [1.0.4] - 2025-04-12
 
@@ -15,6 +16,7 @@ Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi l
 - Sửa lỗi Docker build cho Railway deployment
 - Thêm custom Dockerfile để tối ưu hóa quá trình build
 - Thêm nginx configuration cho Single Page Application
+- Cấu hình lại các tham số build cho môi trường production
 
 ## [1.0.3] - 2025-04-12
 

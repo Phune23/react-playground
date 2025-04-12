@@ -1,29 +1,64 @@
 import { execSync } from 'child_process';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-console.log('Kiểm tra cấu hình Nginx:');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+console.log('=== RAILWAY NGINX DIAGNOSTICS ===');
 
 try {
   // Kiểm tra vị trí của nginx.conf
-  console.log('1. Kiểm tra nginx.conf:');
-  execSync('ls -la /etc/nginx/conf.d/', { stdio: 'inherit' });
-  
-  // Kiểm tra nội dung của cấu hình hiện tại
-  console.log('\n2. Nội dung cấu hình Nginx:');
-  execSync('cat /etc/nginx/conf.d/default.conf', { stdio: 'inherit' });
+  console.log('\n1. Cấu hình Nginx:');
+  try {
+    execSync('ls -la /etc/nginx/conf.d/', { stdio: 'inherit' });
+    execSync('cat /etc/nginx/conf.d/default.conf', { stdio: 'inherit' });
+  } catch (e) {
+    console.log('Không thể đọc cấu hình Nginx:', e.message);
+  }
   
   // Kiểm tra các file trong thư mục web
-  console.log('\n3. Kiểm tra thư mục web:');
-  execSync('ls -la /usr/share/nginx/html/', { stdio: 'inherit' });
+  console.log('\n2. Thư mục web:');
+  try {
+    execSync('ls -la /usr/share/nginx/html/', { stdio: 'inherit' });
+    
+    // Kiểm tra index.html
+    console.log('\n3. Kiểm tra index.html:');
+    if (fs.existsSync('/usr/share/nginx/html/index.html')) {
+      console.log('index.html tồn tại');
+      const content = fs.readFileSync('/usr/share/nginx/html/index.html', 'utf8').substring(0, 200);
+      console.log('Nội dung (200 ký tự đầu):', content);
+    } else {
+      console.log('❌ KHÔNG TÌM THẤY index.html');
+    }
+  } catch (e) {
+    console.log('Không thể đọc thư mục web:', e.message);
+  }
   
-  // Kiểm tra xem Nginx có đang chạy
+  // Kiểm tra Nginx có đang chạy
   console.log('\n4. Trạng thái Nginx:');
-  execSync('ps aux | grep nginx', { stdio: 'inherit' });
+  try {
+    execSync('ps aux | grep nginx', { stdio: 'inherit' });
+  } catch (e) {
+    console.log('Không thể kiểm tra trạng thái Nginx:', e.message);
+  }
   
-  // Kiểm tra port 80
-  console.log('\n5. Kiểm tra port 80:');
-  execSync('netstat -tulpn | grep 80', { stdio: 'inherit' });
+  // Kiểm tra cổng
+  console.log('\n5. Kiểm tra cổng 80:');
+  try {
+    execSync('netstat -tulpn | grep 80', { stdio: 'inherit' });
+  } catch (e) {
+    console.log('Không thể kiểm tra cổng 80:', e.message);
+    try {
+      // Thử phương pháp thay thế
+      execSync('ss -tulpn | grep 80', { stdio: 'inherit' });
+    } catch {
+      console.log('Cả netstat và ss đều không khả dụng');
+    }
+  }
 
   console.log('\n✅ Kiểm tra hoàn tất.');
 } catch (error) {
-  console.error('\n❌ Lỗi khi kiểm tra:', error);
+  console.error('\n❌ Lỗi tổng thể:', error);
 }
