@@ -23,15 +23,13 @@ jobs:
         run: |
           cp package-lock.json package-lock.json.original
           npm config set legacy-peer-deps true
+          # Thêm env var để tránh lỗi Rollup
+          export ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true  
           npm install --package-lock-only
           if ! cmp -s package-lock.json package-lock.json.original; then
             echo "::error::package-lock.json is out of sync with package.json"
             echo "Run 'npm install --package-lock-only' locally and commit the changes"
-            # Show diff to help identify issues
-            diff -u package-lock.json.original package-lock.json || true
             exit 1
-          else
-            echo "✅ package-lock.json is in sync with package.json"
           fi
       
       - name: Verify clean install is possible
