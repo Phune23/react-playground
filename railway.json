@@ -1,0 +1,13 @@
+{
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "./Dockerfile"
+  },
+  "deploy": {
+    "healthcheck": {
+      "path": "/",
+      "interval": 10,
+      "timeout": 5
+    }
+  }
+}
