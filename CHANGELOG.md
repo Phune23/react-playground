@@ -2,6 +2,13 @@
 
 Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi lại ở đây.
 
+## [1.0.5] - 2025-04-12
+
+### Sửa lỗi
+- Đồng bộ hóa package.json và package-lock.json để sửa lỗi `npm ci`
+- Chuyển từ `npm ci` sang `npm install` trong Dockerfile
+- Thêm cấu hình .npmrc để xử lý peer dependencies
+
 ## [1.0.4] - 2025-04-12
 
 ### Sửa lỗi

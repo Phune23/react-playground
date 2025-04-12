@@ -3,11 +3,15 @@ FROM node:20-alpine AS build
 # Thiết lập thư mục làm việc
 WORKDIR /app
 
-# Sao chép package.json và package-lock.json trước
-COPY package*.json ./
+# Sao chép package.json trước
+COPY package.json ./
 
-# Cài đặt dependencies
-RUN npm ci --only=production
+# Sao chép package-lock.json nếu có
+COPY package-lock.json* ./
+
+# Sử dụng npm install thay vì npm ci
+# Thêm --legacy-peer-deps để tránh lỗi peer dependencies
+RUN npm install --legacy-peer-deps
 
 # Sao chép tất cả source code
 COPY . .
