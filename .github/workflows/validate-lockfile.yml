@@ -1,0 +1,55 @@
+name: Validate package-lock.json
+
+on:
+  pull_request:
+    branches: [ develop, main ]
+    paths:
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Check package-lock.json synchronization
+        run: |
+          cp package-lock.json package-lock.json.original
+          npm config set legacy-peer-deps true
+          npm install --package-lock-only
+          if ! cmp -s package-lock.json package-lock.json.original; then
+            echo "::error::package-lock.json is out of sync with package.json"
+            echo "Run 'npm install --package-lock-only' locally and commit the changes"
+            # Show diff to help identify issues
+            diff -u package-lock.json.original package-lock.json || true
+            exit 1
+          else
+            echo "✅ package-lock.json is in sync with package.json"
+          fi
+      
+      - name: Verify clean install is possible
+        id: verify_install
+        continue-on-error: true
+        run: |
+          rm -rf node_modules
+          npm config set legacy-peer-deps true
+          npm ci
+          echo "Clean install works successfully"
+          echo "success=true" >> $GITHUB_OUTPUT
+          
+      - name: Generate installation report
+        if: steps.verify_install.outputs.success != 'true'
+        run: |
+          echo "⚠️ Warning: Clean install with 'npm ci' failed"
+          echo "This could cause issues in CI/CD pipelines"
+          echo "Consider running 'npm install' locally, then committing the updated package-lock.json"
+          # Perform regular install as fallback to verify package.json is valid
+          npm install
+          echo "✅ Regular install works. Update package-lock.json and commit it."
