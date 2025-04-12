@@ -1,7 +1,7 @@
 # React Playground
 
 ![CI/CD](https://img.shields.io/github/actions/workflow/status/Phune23/react-playground/ci-cd.yml?branch=main&label=CI%2FCD)
-![Version](https://img.shields.io/badge/version-1.0.2-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.5-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)
 ![Railway](https://img.shields.io/badge/Railway-Deployed-success)
