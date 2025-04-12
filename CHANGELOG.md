@@ -2,6 +2,13 @@
 
 Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi lại ở đây.
 
+## [1.0.5] - 2025-04-12
+
+### Sửa lỗi
+- Sửa lỗi Rollup trong quá trình build trên CI/CD
+- Thêm script build:ci để xử lý các vấn đề với optional dependencies
+- Chỉ định phiên bản cụ thể của Rollup để tránh lỗi
+
 ## [1.0.4] - 2025-04-12
 
 ### Sửa lỗi
@@ -15,6 +22,12 @@ Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi l
 - Sửa cấu hình Jest để hỗ trợ ECMAScript Modules (ESM)
 - Cập nhật cấu hình Babel để đảm bảo tests hoạt động đúng
 - Thêm flag `--experimental-vm-modules` cho các lệnh Jest
+
+### Thay đổi kỹ thuật
+- Cập nhật jest.config.js thành file module với export default
+- Thêm các preset Babel cho React và môi trường Node hiện tại
+- Cải thiện cấu hình collect coverage cho Jest
+- Thêm mock files cho assets với cú pháp ESM
 
 ## [1.0.2] - 2025-04-11
 

@@ -123,6 +123,36 @@ src/
   "code": "function App() {\n  const [count, setCount] = React.useState(0);\n  return (\n    <div>\n      <p>Bạn đã click {count} lần</p>\n      <button onClick={() => setCount(count + 1)}>Click me</button>\n    </div>\n  );\n}"
 }
 ```
+
+## Quy trình phát triển
+
+### Kiểm soát package-lock.json
+
+Dự án này sử dụng các GitHub workflows tự động để đảm bảo package-lock.json luôn đồng bộ với package.json:
+
+1. **validate-lockfile**: Chạy tự động khi có PR chứa thay đổi trong package.json hoặc package-lock.json
+2. **Cách kiểm tra thủ công**: Chạy `npm run check-lock` để kiểm tra tính đồng bộ
+3. **Cách cập nhật**: Chạy `npm run sync-lock` để cập nhật package-lock.json
+
+### Nếu gặp lỗi "package-lock.json is out of sync"
+
+```bash
+# Xóa node_modules nếu có vấn đề với dependencies
+rm -rf node_modules
+
+# Cập nhật 
+npm install --package-lock-only
+
+# Thêm vào git
+git add 
+
+# Commit
+git commit -m "chore: Update package-lock.json"
+
+# Push
+git push
+```
+
 # 🔮 Mở rộng tiềm năng
 - Cho phép người dùng tự tạo bài học và lưu lại.
 - Lưu code vào localStorage.
