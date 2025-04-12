@@ -11,16 +11,14 @@
     "prebuild": "node scripts/disable-rollup-native.js",
     "dev": "vite",
     "build": "vite build",
-    "build:ci": "vite build",
-    "preview": "cross-env ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true vite preview",
+    "build:ci": "ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true vite build",
+    "postbuild": "node scripts/check-build.js",
+    "preview": "vite preview",
     "lint": "eslint src --ext .js,.jsx",
     "lint:fix": "eslint src --ext .js,.jsx --fix",
-    "test": "ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:watch": "ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "test:coverage": "ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "cleanup": "rm -rf node_modules package-lock.json && npm install",
-    "check-lock": "node scripts/check-lock.js",
-    "sync-lock": "npm install --package-lock-only && git add package-lock.json"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
