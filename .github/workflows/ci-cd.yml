@@ -61,7 +61,13 @@ jobs:
     
     - name: Build
       run: |
+        # Xóa thư mục node_modules/rollup để đảm bảo sử dụng phiên bản đã cài đặt
+        rm -rf node_modules/rollup
+        # Cài đặt lại Rollup phiên bản cụ thể
+        npm install rollup@3.29.4 --no-save
+        # Thiết lập biến môi trường
         export ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true
+        # Chạy build script
         npm run build:ci
     
     - name: Upload build artifacts

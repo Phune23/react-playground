@@ -1,18 +1,27 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import process from 'process';
 
-// Vite sử dụng biến môi trường qua import.meta.env trong code
+// Thiết lập biến môi trường một cách an toàn trong Node.js runtime
+try {
+  process.env.ROLLUP_SKIP_LOAD_NATIVE_PLUGINS = 'true';
+} catch {
+  // Bỏ qua lỗi
+}
+
 export default defineConfig({
   define: {
-    // Định nghĩa giá trị cho import.meta.env.ROLLUP_SKIP_LOAD_NATIVE_PLUGINS
-    'import.meta.env.ROLLUP_SKIP_LOAD_NATIVE_PLUGINS': JSON.stringify('true'),
-    // Đảm bảo tương thích với code sử dụng process.env
     'process.env.ROLLUP_SKIP_LOAD_NATIVE_PLUGINS': JSON.stringify('true'),
   },
   plugins: [react()],
   build: {
     rollupOptions: {
+      // Sử dụng context và external để ép Rollup không sử dụng native plugins
       context: 'globalThis',
+      external: id => {
+        // Loại bỏ các native add-ons
+        return /rollup-.*-plugin|@rollup\/rollup-.*/.test(id);
+      }
     },
   },
 });
