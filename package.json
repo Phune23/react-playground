@@ -9,13 +9,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:ci": "ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true vite build",
+    "postbuild": "node scripts/check-build.js",
     "preview": "vite preview",
     "lint": "eslint src --ext .js,.jsx",
     "lint:fix": "eslint src --ext .js,.jsx --fix",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-    "postinstall": "npm run build"
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.7.0",
