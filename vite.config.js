@@ -9,8 +9,10 @@ try {
   // Bỏ qua lỗi
 }
 
-// https://vite.dev/config/
 export default defineConfig({
+  define: {
+    'process.env.ROLLUP_SKIP_LOAD_NATIVE_PLUGINS': JSON.stringify('true'),
+  },
   plugins: [react()],
   // Thêm cấu hình base để hoạt động trên Railway
   base: '/',
@@ -28,4 +30,5 @@ export default defineConfig({
     port: process.env.PORT || 3000,
     host: '0.0.0.0'
   }
-})
+});
+
