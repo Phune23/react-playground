@@ -2,6 +2,13 @@
 
 Tất cả những thay đổi đáng chú ý của dự án sẽ được ghi lại ở đây.
 
+## [1.0.5] - 2025-04-12
+
+### Sửa lỗi
+- Sửa lỗi Rollup trong quá trình build trên CI/CD
+- Thêm script build:ci để xử lý các vấn đề với optional dependencies
+- Chỉ định phiên bản cụ thể của Rollup để tránh lỗi
+
 ## [1.0.4] - 2025-04-12
 
 ### Sửa lỗi
