@@ -3,21 +3,24 @@ FROM node:20-alpine AS build
 # Thiết lập thư mục làm việc
 WORKDIR /app
 
+# Thiết lập biến môi trường để tránh lỗi Rollup
+ENV ROLLUP_SKIP_LOAD_NATIVE_PLUGINS=true
+
 # Sao chép package.json trước
 COPY package.json ./
 
 # Sao chép các file cấu hình khác nếu cần
 COPY vite.config.js .npmrc* ./
 
-# Cài đặt dependencies với cách đặc biệt để tránh lỗi Rollup
-RUN npm install rollup
+# Cài đặt dependencies (không cần cài đặt rollup riêng nữa)
+RUN npm config set legacy-peer-deps true
 RUN npm install
 
 # Sao chép tất cả source code
 COPY . .
 
 # Build ứng dụng
-RUN npm run build
+RUN npm run build:ci
 
 # Stage 2: Sử dụng Nginx để serve static files
 FROM nginx:alpine
